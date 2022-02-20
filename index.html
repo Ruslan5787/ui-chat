@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>My first chat!</title>
+</head>
+
+<body>
+  <div class="chat">
+
+    <div class="chat__menu">
+      <div class="chat__button" id="settings-button">Настройки</div>
+      <div class="chat__button" id="sign-button">Войти</div>
+    </div>
+
+    <div class="chat__window">
+      <div class="chat__window-wrapper">
+
+        <template id="message-template">
+          <div class="chat__window-message--wrapper chat-message__wrapper--secondUser">
+            <div class="chat__window-message">
+              <div class="chat-message__top chat-message__top--mainUser">
+                <span class="chat-message__person">Я:&nbsp</span>
+                <p class="chat-message__text">Добрый день!</p>
+              </div>
+              <span class="chat-message__time">18:45</span>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </div>
+
+    <div class="chat__bottom">
+      <form class="chat__form" id="message-form">
+        <input class="chat__input" placeholder="сообщение.."></input>
+        <button class="chat__button chat__form--button">-></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="chat__popup chat__popup--settings">
+    <div class="chat__popup-window">
+      <div class="chat__popup-header">
+        <div class="chat__popup-title">Настройки</div>
+        <button class="chat__popup-button" id="close-button"><img src="img/+.svg" alt=""></button>
+      </div>
+
+      <div class="chat__popup-content">
+        <span class="chat__popup-inscription">Имя в чате</span>
+        <form class="chat__form" id="settings-form">
+          <input class="chat__input chat__input--settings" id="settings-input" placeholder="Имя"></input>
+          <button class="chat__button chat__form--button">-></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat__popup chat__popup--account">
+    <div class="chat__popup-window">
+      <div class="chat__popup-header">
+        <div class="chat__popup-title">Авторизация</div>
+        <button class="chat__popup-button" id="close-button"><img src="img/+.svg" alt=""></button>
+      </div>
+
+      <div class="chat__popup-content">
+        <span class="chat__popup-inscription">Почта:</span>
+        <form class="chat__form chat__form--btn" id="get-code-form">
+          <input class="chat__input chat__form--input" id="mail-field" type="email" placeholder="почта.."></input>
+          <button class="chat__button chat__form--button" id="get-code">Получить код</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat__popup chat__popup--account">
+    <div class="chat__popup-window">
+      <div class="chat__popup-header">
+        <div class="chat__popup-title">Подтверждение</div>
+        <button class="chat__popup-button" id="close-button"><img src="img/+.svg" alt=""></button>
+      </div>
+
+      <div class="chat__popup-content">
+        <span class="chat__popup-inscription">Код:</span>
+        <form class="chat__form chat__form--btn">
+          <input class="chat__input chat__form--input" placeholder="код.."></input>
+          <button class="chat__button chat__form--button">Войти</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="module" src="js/minutiae.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
