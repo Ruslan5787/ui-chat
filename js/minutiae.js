@@ -1,4 +1,4 @@
-// import { format, compareAsc } from 'date-fns'
+import { format, compareAsc } from 'date-fns'
 import { UI_COMPONENTS } from './view.js';
 
 UI_COMPONENTS.SETTINGS.BUTTON.addEventListener('click', () => {

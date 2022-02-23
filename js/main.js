@@ -1,5 +1,8 @@
+import Cookies from 'js-cookie'
+import { format, compareAsc } from 'date-fns'
+
 import { UI_COMPONENTS } from "./view.js";
-import { openCodePopup, addScroll } from "./minutiae.js";
+import { openCodePopup, addMessage, addScroll } from "./minutiae.js";
 
 const MAIN_USER_INFO = {
   MAIL: 'abdulaz1movr@yandex.ru',
@@ -13,12 +16,13 @@ const SERVER_API = {
   SOCKET: 'ws://chat1-341409.oa.r.appspot.com/websockets?',
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  makeRequest(SERVER_API.MESSAGE_HISTORY, 'GET',
-    { 'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZHVsYXoxbW92ckB5YW5kZXgucnUiLCJpYXQiOjE2NDU1OTQwOTQsImV4cCI6MTY0NjA0MDQ5NH0.V4WcVowBbAXmfVZFSpU6Mk0D-9wk2jmpJ2aCN5iqudQ` },
-    undefined, 'true'
-  )
-})
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   makeRequest(SERVER_API.MESSAGE_HISTORY, 'GET',
+//     { 'Authorization': `Bearer ${Cookies.get('userCode')}` },
+//     undefined, 'true'
+//   )
+// })
 
 UI_COMPONENTS.MAIL.FORM.addEventListener('submit', event => {
   const userMail = UI_COMPONENTS.MAIL.FIELD.value
@@ -38,6 +42,7 @@ UI_COMPONENTS.MAIL.FORM.addEventListener('submit', event => {
 UI_COMPONENTS.CODE.FORM.addEventListener('submit', event => {
   const userCode = UI_COMPONENTS.CODE.FIELD.value
 
+  Cookies.set('userCode', `${userCode}`)
   event.preventDefault()
 })
 
@@ -48,7 +53,7 @@ UI_COMPONENTS.SETTINGS.FORM.addEventListener('submit', event => {
     {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZHVsYXoxbW92ckB5YW5kZXgucnUiLCJpYXQiOjE2NDU2MTQ1MzMsImV4cCI6MTY0NjA2MDkzM30.mnHMAwPf2KRAEW4eFOrGjuykpP8TaRArXfsiKECXPr0`
+      'Authorization': `Bearer ${Cookies.get('userCode')}`
     },
     JSON.stringify({ name: userName })
   )
@@ -56,7 +61,7 @@ UI_COMPONENTS.SETTINGS.FORM.addEventListener('submit', event => {
   event.preventDefault()
 })
 
-async function makeRequest(url, method, headersObj, body, renderHistory) {
+async function makeRequest(url, method, headersObj, body) {
   const response = await fetch(url, {
     method: method,
     headers: headersObj,
@@ -65,9 +70,10 @@ async function makeRequest(url, method, headersObj, body, renderHistory) {
   const results = await response.json()
   console.log(results);
 
-  if (renderHistory) {
-    renderMessages(results)
-  }
+  // if (renderHistory) {
+  //   renderMessages(results)
+  // }
+
 }
 
 function renderMessages(data) {
@@ -77,7 +83,7 @@ function renderMessages(data) {
 
   data.messages.forEach(element => {
     messageText.textContent = element.message
-    // messageDate.textContent = format(new Date(element.createdAt), 'HH:mm')
+    messageDate.textContent = format(new Date(element.createdAt), 'HH:mm')
     messageNameUser.textContent = `${element.username}:`
 
     const message = UI_COMPONENTS.MESSAGE.TEMPLATE.content.cloneNode(true)
@@ -93,7 +99,7 @@ function renderMessages(data) {
   });
 }
 
-const socket = new WebSocket(`${SERVER_API.SOCKET}eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZHVsYXoxbW92ckB5YW5kZXgucnUiLCJpYXQiOjE2NDU1OTQwOTQsImV4cCI6MTY0NjA0MDQ5NH0.V4WcVowBbAXmfVZFSpU6Mk0D-9wk2jmpJ2aCN5iqudQ`)
+const socket = new WebSocket(`${SERVER_API.SOCKET}${Cookies.get('userCode')}`)
 socket.onopen = (e) => {
   UI_COMPONENTS.MESSAGE.FORM.addEventListener('submit', event => {
     const inputValue = UI_COMPONENTS.CHAT.INPUT.value
@@ -120,7 +126,7 @@ function renderMessagesSocket(data) {
   let messageNameUser = UI_COMPONENTS.MESSAGE.TEMPLATE.content.querySelector('.chat-message__person')
 
   messageText.textContent = data.text
-  // messageDate.textContent = format(new Date(data.createdAt), 'HH:mm')
+  messageDate.textContent = format(new Date(data.createdAt), 'HH:mm')
   messageNameUser.textContent = `${data.user.name}:`
 
   const message = UI_COMPONENTS.MESSAGE.TEMPLATE.content.cloneNode(true)
