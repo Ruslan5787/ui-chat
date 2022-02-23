@@ -19,6 +19,7 @@ body {
   font-size: 16px;
   line-height: 19px;
   color: #000000;
+  background-color: #b4dcf3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +31,10 @@ body {
   padding: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  border: 1px solid #000;
+  background-color: #fff;
+  border-radius: 7px; }
   .chat__button {
     display: block;
     text-align: center;
@@ -39,7 +43,7 @@ body {
     cursor: pointer;
     transition: all 0.5s;
     border: 1px solid #000000;
-    background-color: transparent; }
+    background-color: #fff; }
     .chat__button:hover {
       background-color: #bfe1eb; }
   .chat__menu {
@@ -53,7 +57,9 @@ body {
     height: 437px;
     padding: 8px;
     margin-bottom: 8px;
-    border: 1px solid #000000; }
+    border: 1px solid #000000;
+    background-color: #fff;
+    transition: all 0.3s; }
     .chat__window-wrapper--scroll {
       overflow-y: scroll;
       padding-right: 3px; }
@@ -105,7 +111,7 @@ body {
       margin-bottom: 7px; }
   .chat__popup {
     width: 305px;
-    height: 522px;
+    height: 521px;
     display: flex;
     position: absolute;
     visibility: hidden;
@@ -113,6 +119,7 @@ body {
     z-index: 100;
     justify-content: center;
     align-items: center;
+    border-radius: 7px;
     visibility: hidden;
     transition: all 0.4s;
     background: #535353; }
