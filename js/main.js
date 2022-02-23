@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import { format, compareAsc } from 'date-fns'
 
 import { UI_COMPONENTS } from "./view.js";
-import { openCodePopup, addMessage, addScroll } from "./minutiae.js";
+import { openCodePopup, addScroll } from "./minutiae.js";
 
 const MAIN_USER_INFO = {
   MAIL: 'abdulaz1movr@yandex.ru',
@@ -16,13 +16,12 @@ const SERVER_API = {
   SOCKET: 'ws://chat1-341409.oa.r.appspot.com/websockets?',
 }
 
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   makeRequest(SERVER_API.MESSAGE_HISTORY, 'GET',
-//     { 'Authorization': `Bearer ${Cookies.get('userCode')}` },
-//     undefined, 'true'
-//   )
-// })
+document.addEventListener('DOMContentLoaded', () => {
+  makeRequest(SERVER_API.MESSAGE_HISTORY, 'GET',
+    { 'Authorization': `Bearer ${Cookies.get('userCode')}` },
+    undefined, 'true'
+  )
+})
 
 UI_COMPONENTS.MAIL.FORM.addEventListener('submit', event => {
   const userMail = UI_COMPONENTS.MAIL.FIELD.value
@@ -70,10 +69,9 @@ async function makeRequest(url, method, headersObj, body) {
   const results = await response.json()
   console.log(results);
 
-  // if (renderHistory) {
-  //   renderMessages(results)
-  // }
-
+  if (renderHistory) {
+    renderMessages(results)
+  }
 }
 
 function renderMessages(data) {
