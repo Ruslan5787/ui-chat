@@ -1,18 +1,43 @@
 export { UI_COMPONENTS }
 
 const UI_COMPONENTS = {
-  WINDOW: document.querySelector('.chat__window'),
-  WINDOW_WRAPPER: document.querySelector('.chat__window-wrapper'),
-  SETTINGS_BUTTON: document.getElementById('settings-button'),
-  SETTINGS_POPUP: document.querySelector('.chat__popup--settings'),
+  CHAT: {
+    WINDOW: document.querySelector('.chat__window'),
+    WINDOW_WRAPPER: document.querySelector('.chat__window-wrapper'),
+    INPUT: document.querySelector('.chat__input'),
+  },
+
+  SETTINGS: {
+    FORM: document.getElementById('settings-form'),
+    INPUT: document.getElementById('settings-input'),
+    BUTTON: document.getElementById('settings-button'),
+    POPUP: document.querySelector('.chat__popup--settings'),
+  },
+
+  MESSAGE: {
+    FORM: document.getElementById('message-form'),
+    TEMPLATE: document.getElementById('message-template'),
+  },
+
+  ACCOUNT: {
+    MAIL_POPUP: document.querySelector('.chat__popup-account--mail'),
+    CODE_POPUP: document.querySelector('.chat__popup-account--code'),
+  },
+
+  MAIL: {
+    FORM: document.getElementById('mail-form'),
+    FIELD: document.getElementById('mail-field'),
+  },
+
+  CODE: {
+    FORM: document.getElementById('code-form'),
+    FIELD: document.getElementById('code-field'),
+  },
+
+  SIGN: {
+    BUTTON: document.getElementById('sign-button'),
+  },
+
   CLOSE_BUTTONS: document.querySelectorAll('#close-button'),
-  MESSAGE_FORM: document.getElementById('message-form'),
-  CHAT_INPUT: document.querySelector('.chat__input'),
-  MESSAGE_TEMPLATE: document.getElementById('message-template'),
-  SIGN_BUTTON: document.getElementById('sign-button'),
-  ACCOUNT_POPUP: document.querySelector('.chat__popup--account'),
-  GET_CODE_FORM: document.getElementById('get-code-form'),
-  GET_CODE_FIELD: document.getElementById('mail-field'),
-  SETTINGS_FORM: document.getElementById('settings-form'),
-  SETTINGS_INPUT: document.getElementById('settings-input'),
 }
+

@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
   <div class="chat">
 
     <div class="chat__menu">
@@ -26,9 +27,10 @@
       <div class="chat__window-wrapper">
 
         <template id="message-template">
-          <div class="chat__window-message--wrapper chat-message__wrapper--secondUser">
+          <div class="chat__window-message--wrapper">
+            <!--chat-message__wrapper--secondUser -->
             <div class="chat__window-message">
-              <div class="chat-message__top chat-message__top--mainUser">
+              <div class="chat-message__top">
                 <span class="chat-message__person">Я:&nbsp</span>
                 <p class="chat-message__text">Добрый день!</p>
               </div>
@@ -66,7 +68,7 @@
     </div>
   </div>
 
-  <div class="chat__popup chat__popup--account">
+  <div class="chat__popup chat__popup-account--mail">
     <div class="chat__popup-window">
       <div class="chat__popup-header">
         <div class="chat__popup-title">Авторизация</div>
@@ -75,7 +77,7 @@
 
       <div class="chat__popup-content">
         <span class="chat__popup-inscription">Почта:</span>
-        <form class="chat__form chat__form--btn" id="get-code-form">
+        <form class="chat__form chat__form--btn" id="mail-form">
           <input class="chat__input chat__form--input" id="mail-field" type="email" placeholder="почта.."></input>
           <button class="chat__button chat__form--button" id="get-code">Получить код</button>
         </form>
@@ -83,7 +85,7 @@
     </div>
   </div>
 
-  <div class="chat__popup chat__popup--account">
+  <div class="chat__popup chat__popup-account--code">
     <div class="chat__popup-window">
       <div class="chat__popup-header">
         <div class="chat__popup-title">Подтверждение</div>
@@ -92,8 +94,8 @@
 
       <div class="chat__popup-content">
         <span class="chat__popup-inscription">Код:</span>
-        <form class="chat__form chat__form--btn">
-          <input class="chat__input chat__form--input" placeholder="код.."></input>
+        <form class="chat__form chat__form--btn" id="code-form">
+          <input class="chat__input chat__form--input" id="code-field" placeholder="код.."></input>
           <button class="chat__button chat__form--button">Войти</button>
         </form>
       </div>
@@ -101,7 +103,6 @@
   </div>
 
 
-  <script type="module" src="js/minutiae.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 
